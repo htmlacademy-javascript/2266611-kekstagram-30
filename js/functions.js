@@ -1,10 +1,6 @@
-// Функция для проверки длины строки
-
 const checkStringLength = (string, maxLength) => string.length <= maxLength;
 
 checkStringLength('проверяемая строка', 20);
-
-// Функция для проверки, является ли строка палиндромом
 
 const isPalindrome = (string) => {
   string = string.replace(/[\W_]/g, '').toLowerCase();
@@ -12,8 +8,6 @@ const isPalindrome = (string) => {
 };
 
 isPalindrome('А лис, он умён - крыса сыр к нему носила');
-
-// -----------
 
 const checkPalindrome = (string) => {
   string = string.replaceAll(' ', '').toLowerCase();
@@ -29,10 +23,11 @@ const checkPalindrome = (string) => {
 checkPalindrome('довод');
 checkPalindrome('Анна');
 
-// Дополнительное задание
-
 const extractNumbers = (string) => {
-  string = string.toString().replace(/\D/g, '');
+  if (typeof string === 'number') {
+    return parseInt(string, 10);
+  }
+  string = string.replace(/\D/g, '');
   return parseInt(string, 10);
 };
 
