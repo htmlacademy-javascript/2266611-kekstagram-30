@@ -24,18 +24,15 @@ let commentId = 1;
 const getRandomInteger = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
 const getRandomArrayElement = (array) => array[getRandomInteger(0, array.length - 1)];
 
-const shuffleArray = (array) => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-  return array;
+const createMessage = () => {
+  const message = Array.from({length: getRandomInteger(1, 2)}, () => getRandomArrayElement(MESSAGES));
+  return Array.from(new Set(message)).join(' ');
 };
 
 const createComment = () => ({
   id: commentId++,
   avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
-  message: shuffleArray(MESSAGES).slice(0, getRandomInteger(1, 2)).join(' '),
+  message: createMessage(),
   name: getRandomArrayElement(NAMES)
 });
 
