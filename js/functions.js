@@ -1,34 +1,14 @@
-const checkStringLength = (string, maxLength) => string.length <= maxLength;
-
-checkStringLength('проверяемая строка', 20);
-
-const isPalindrome = (string) => {
-  string = string.replace(/[\W_]/g, '').toLowerCase();
-  return string === string.split('').reverse().join('');
+const getMinutes = (string) => {
+  const time = string.split(':');
+  return Number(time[0]) * 60 + Number(time[1]);
 };
 
-isPalindrome('А лис, он умён - крыса сыр к нему носила');
-
-const checkPalindrome = (string) => {
-  string = string.replaceAll(' ', '').toLowerCase();
-  const halfString = Math.floor(string.length / 2);
-  for (let i = 0; i < halfString; i++) {
-    if (string[i] !== string[string.length - i - 1]) {
-      return false;
-    }
-  }
-  return true;
+const checkTime = (start, end, meeting, duration) => {
+  const startOfDay = getMinutes(start);
+  const endOfDay = getMinutes(end);
+  const startOfMeeting = getMinutes(meeting);
+  const endOfMeeting = startOfMeeting + duration;
+  return startOfMeeting >= startOfDay && endOfMeeting <= endOfDay;
 };
 
-checkPalindrome('довод');
-checkPalindrome('Анна');
-
-const extractNumbers = (string) => {
-  if (typeof string === 'number') {
-    return parseInt(string, 10);
-  }
-  string = string.replace(/\D/g, '');
-  return parseInt(string, 10);
-};
-
-extractNumbers('ECMAScript 2022');
+checkTime('8:00', '17:30', '08:00', 900);
