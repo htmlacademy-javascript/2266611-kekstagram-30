@@ -7,8 +7,15 @@ const postCaption = modalContainer.querySelector('.social__caption');
 const postLikesCount = modalContainer.querySelector('.likes-count');
 const commentsList = modalContainer.querySelector('.social__comments');
 const commentsItem = modalContainer.querySelector('.social__comment');
+const commentsCount = modalContainer.querySelector('.social__comment-count');
+const commentsLoadingButton = modalContainer.querySelector('.comments-loader');
 
 let comments = [];
+
+const hideElements = () => {
+  commentsCount.classList.add('hidden');
+  commentsLoadingButton.classList.add('hidden');
+};
 
 const openModal = () => {
   modalContainer.classList.remove('hidden');
@@ -35,7 +42,7 @@ function documentKeydownHandler(evt) {
   }
 }
 
-const fillPhoto = (post) => {
+const fillPostInfo = (post) => {
   fullSizePhoto.src = post.url;
   fullSizePhoto.alt = post.description;
   postCaption.textContent = post.description;
@@ -58,8 +65,9 @@ const fillComments = () => {
 const renderModal = (post) => {
   commentsList.innerHTML = '';
   comments = post.comments;
+  hideElements();
   openModal();
-  fillPhoto(post);
+  fillPostInfo(post);
   fillComments();
 };
 
