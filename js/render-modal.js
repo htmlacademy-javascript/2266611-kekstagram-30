@@ -1,21 +1,14 @@
 import {isEscapeKey} from './utils.js';
 
 const modalContainer = document.querySelector('.big-picture');
-const modalCloseButton = modalContainer.querySelector('.big-picture__cancel');
-const fullSizePhoto = modalContainer.querySelector('.big-picture__img img');
-const postCaption = modalContainer.querySelector('.social__caption');
-const postLikesCount = modalContainer.querySelector('.likes-count');
-const commentsList = modalContainer.querySelector('.social__comments');
-const commentsItem = modalContainer.querySelector('.social__comment');
-const commentsCount = modalContainer.querySelector('.social__comment-count');
-const commentsLoadingButton = modalContainer.querySelector('.comments-loader');
+const modalCloseButton = document.querySelector('.big-picture__cancel');
+const fullSizePhoto = document.querySelector('.big-picture__img img');
+const postCaption = document.querySelector('.social__caption');
+const postLikesCount = document.querySelector('.likes-count');
+const commentsList = document.querySelector('.social__comments');
+const commentsItem = document.querySelector('.social__comment');
 
 let comments = [];
-
-const hideElements = () => {
-  commentsCount.classList.add('hidden');
-  commentsLoadingButton.classList.add('hidden');
-};
 
 const openModal = () => {
   modalContainer.classList.remove('hidden');
@@ -65,7 +58,6 @@ const fillComments = () => {
 const renderModal = (post) => {
   commentsList.innerHTML = '';
   comments = post.comments;
-  hideElements();
   openModal();
   fillPostInfo(post);
   fillComments();
