@@ -1,4 +1,5 @@
 import {createPosts} from './create-posts.js';
+import {renderModal} from './render-modal.js';
 
 const posts = createPosts();
 const container = document.querySelector('.pictures');
@@ -12,6 +13,10 @@ const createPhoto = (post) => {
   img.alt = post.description;
   newPhoto.querySelector('.picture__likes').textContent = post.likes;
   newPhoto.querySelector('.picture__comments').textContent = post.comments.length;
+  newPhoto.addEventListener('click', (evt) => {
+    evt.preventDefault();
+    renderModal(post);
+  });
   fragment.append(newPhoto);
 };
 
