@@ -1,6 +1,6 @@
 import {isEscapeKey} from './utils.js';
 
-const COMMENTS_INTERVAL = 5;
+const COMMENTS_STEP = 5;
 let visibleComments = 0;
 
 const modalContainer = document.querySelector('.big-picture');
@@ -17,7 +17,7 @@ const commentsLoadingButton = document.querySelector('.comments-loader');
 let comments = [];
 
 const updateCommentsCounter = () => {
-  visibleComments += COMMENTS_INTERVAL;
+  visibleComments += COMMENTS_STEP;
   if (visibleComments > comments.length) {
     visibleComments = comments.length;
   }
@@ -43,7 +43,7 @@ const createComment = (comment) => {
 };
 
 const fillComments = () => {
-  const currentComments = comments.slice(visibleComments, visibleComments + COMMENTS_INTERVAL);
+  const currentComments = comments.slice(visibleComments, visibleComments + COMMENTS_STEP);
   currentComments.forEach((comment) => commentsList.append(createComment(comment)));
   updateCommentsCounter();
   hideCommentsLoadingButton();
