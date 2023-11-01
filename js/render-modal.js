@@ -28,9 +28,7 @@ const updateCommentsCounter = () => {
 const hideCommentsLoadingButton = () => {
   if (visibleComments >= comments.length) {
     commentsLoadingButton.classList.add('hidden');
-    return;
   }
-  commentsLoadingButton.classList.remove('hidden');
 };
 
 const createComment = (comment) => {
@@ -87,14 +85,15 @@ function commentsLoadingButtonClickHandler() {
   fillComments();
 }
 
-const reset = () => {
+const resetLastPostInfo = () => {
   commentsList.innerHTML = '';
   visibleComments = 0;
+  commentsLoadingButton.classList.remove('hidden');
 };
 
 const renderModal = (post) => {
   comments = post.comments;
-  reset();
+  resetLastPostInfo();
   openModal();
   fillPostInfo(post);
   fillComments();
