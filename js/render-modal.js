@@ -85,7 +85,7 @@ function commentsLoadingButtonClickHandler() {
   fillComments();
 }
 
-const resetLastPostInfo = () => {
+const resetLastPostComments = () => {
   commentsList.innerHTML = '';
   visibleComments = 0;
   commentsLoadingButton.classList.remove('hidden');
@@ -93,7 +93,7 @@ const resetLastPostInfo = () => {
 
 const renderModal = (post) => {
   comments = post.comments;
-  resetLastPostInfo();
+  resetLastPostComments();
   openModal();
   fillPostInfo(post);
   fillComments();
