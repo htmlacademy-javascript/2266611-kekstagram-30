@@ -49,9 +49,14 @@ const fillComments = () => {
   hideCommentsLoadingButton();
 };
 
+const fillPostInfo = (post) => {
+  fullSizePhoto.src = post.url;
+  fullSizePhoto.alt = post.description;
+  postCaption.textContent = post.description;
+  postLikesCounter.textContent = post.likes;
+};
+
 const openModal = () => {
-  commentsList.innerHTML = '';
-  visibleComments = 0;
   modalContainer.classList.remove('hidden');
   document.body.classList.add('modal-open');
   modalCloseButton.addEventListener('click', modalCloseButtonClickHandler);
@@ -82,15 +87,14 @@ function commentsLoadingButtonClickHandler() {
   fillComments();
 }
 
-const fillPostInfo = (post) => {
-  fullSizePhoto.src = post.url;
-  fullSizePhoto.alt = post.description;
-  postCaption.textContent = post.description;
-  postLikesCounter.textContent = post.likes;
+const reset = () => {
+  commentsList.innerHTML = '';
+  visibleComments = 0;
 };
 
 const renderModal = (post) => {
   comments = post.comments;
+  reset();
   openModal();
   fillPostInfo(post);
   fillComments();
