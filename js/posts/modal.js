@@ -1,7 +1,6 @@
-import {isEscapeKey} from './utils.js';
+import {isEscapeKey} from '../utils.js';
 
 const COMMENTS_STEP = 5;
-let visibleComments = 0;
 
 const modalContainer = document.querySelector('.big-picture');
 const modalCloseButton = document.querySelector('.big-picture__cancel');
@@ -15,20 +14,15 @@ const commentsTotalCounter = document.querySelector('.social__comment-total-coun
 const commentsLoadingButton = document.querySelector('.comments-loader');
 
 let comments = [];
+let visibleComments = 0;
 
 const updateCommentsCounter = () => {
-  visibleComments += COMMENTS_STEP;
-  if (visibleComments > comments.length) {
-    visibleComments = comments.length;
-  }
+  visibleComments = Math.min(visibleComments + COMMENTS_STEP, comments.length);
   commentsShownCounter.textContent = visibleComments;
-  commentsTotalCounter.textContent = comments.length;
 };
 
-const hideCommentsLoadingButton = () => {
-  if (visibleComments >= comments.length) {
-    commentsLoadingButton.classList.add('hidden');
-  }
+const setLoadingButtonStatus = () => {
+  commentsLoadingButton.classList.toggle('hidden', visibleComments >= comments.length);
 };
 
 const createComment = (comment) => {
@@ -41,10 +35,9 @@ const createComment = (comment) => {
 };
 
 const fillComments = () => {
-  const currentComments = comments.slice(visibleComments, visibleComments + COMMENTS_STEP);
-  currentComments.forEach((comment) => commentsList.append(createComment(comment)));
+  comments.slice(visibleComments, visibleComments + COMMENTS_STEP).forEach((comment) => commentsList.append(createComment(comment)));
   updateCommentsCounter();
-  hideCommentsLoadingButton();
+  setLoadingButtonStatus();
 };
 
 const fillPostInfo = (post) => {
@@ -85,15 +78,15 @@ function commentsLoadingButtonClickHandler() {
   fillComments();
 }
 
-const resetLastPostComments = () => {
+const resetLastPostValues = () => {
   commentsList.innerHTML = '';
+  commentsTotalCounter.textContent = comments.length;
   visibleComments = 0;
-  commentsLoadingButton.classList.remove('hidden');
 };
 
 const renderModal = (post) => {
   comments = post.comments;
-  resetLastPostComments();
+  resetLastPostValues();
   openModal();
   fillPostInfo(post);
   fillComments();

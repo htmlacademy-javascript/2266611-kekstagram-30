@@ -1,5 +1,5 @@
-import {createPosts} from './create-posts.js';
-import {renderModal} from './render-modal.js';
+import {createPosts} from './data.js';
+import {renderModal} from './modal.js';
 
 const posts = createPosts();
 const container = document.querySelector('.pictures');
