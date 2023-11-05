@@ -68,7 +68,7 @@ function modalCloseButtonClickHandler() {
 }
 
 function documentKeydownHandler(evt) {
-  if (isEscapeKey(evt)) {
+  if (isEscapeKey(evt) && !evt.target.closest('.social__footer-text')) {
     evt.preventDefault();
     closeModal();
   }

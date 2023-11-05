@@ -1,7 +1,8 @@
 import {isEscapeKey} from './utils.js';
+import {addValidator, validatePristine} from './validate.js';
 
+const uploadInput = document.querySelector('.img-upload__input');
 const form = document.querySelector('.img-upload__form');
-const formUploadInput = document.querySelector('.img-upload__input');
 const formModal = document.querySelector('.img-upload__overlay');
 const formCloseButton = document.querySelector('.img-upload__cancel');
 
@@ -25,18 +26,29 @@ function formCloseButtonClickHandler() {
 }
 
 function documentKeydownHandler(evt) {
-  if (isEscapeKey(evt)) {
+  if (isEscapeKey(evt) && !evt.target.closest('.text__hashtags') && !evt.target.closest('.text__description')) {
     evt.preventDefault();
     closeForm();
   }
 }
 
-function formUploadInputChangeHandler() {
+function uploadInputChangeHandler() {
   openForm();
 }
 
+function formSubmitHandler(evt) {
+  evt.preventDefault();
+  if (validatePristine()) {
+    // valid
+  } else {
+    // invalid
+  }
+}
+
 const setFormAction = () => {
-  formUploadInput.addEventListener('change', formUploadInputChangeHandler);
+  uploadInput.addEventListener('change', uploadInputChangeHandler);
+  form.addEventListener('submit', formSubmitHandler);
+  addValidator();
 };
 
 export {setFormAction};
