@@ -49,6 +49,6 @@ const addValidator = () => {
   );
 };
 
-const validatePristine = () => pristine.validate();
+const isValid = () => pristine.validate();
 
-export {addValidator, validatePristine};
+export {addValidator, isValid};

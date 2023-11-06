@@ -1,5 +1,5 @@
 import {isEscapeKey} from './utils.js';
-import {addValidator, validatePristine} from './validate.js';
+import {addValidator, isValid} from './validate.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const form = document.querySelector('.img-upload__form');
@@ -38,7 +38,7 @@ function uploadInputChangeHandler() {
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  if (validatePristine()) {
+  if (isValid()) {
     // valid
   } else {
     // invalid
