@@ -1,5 +1,5 @@
 import {isEscapeKey} from './utils.js';
-import {addValidator, isValid} from './validate.js';
+import {addValidator, validatePristine, resetPristine} from './validate.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const form = document.querySelector('.img-upload__form');
@@ -15,6 +15,7 @@ const openForm = () => {
 
 const closeForm = () => {
   form.reset();
+  resetPristine();
   formModal.classList.add('hidden');
   document.body.classList.remove('modal-open');
   formCloseButton.removeEventListener('click', formCloseButtonClickHandler);
@@ -38,7 +39,7 @@ function uploadInputChangeHandler() {
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  if (isValid()) {
+  if (validatePristine()) {
     // valid
   } else {
     // invalid
