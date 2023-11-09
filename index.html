@@ -34,7 +34,7 @@
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
-              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" required>
+              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" accept=".jpg, .jpeg, .png" required>
               <label for="upload-file" class="img-upload__label  img-upload__control">Загрузить</label>
             </fieldset>
 
@@ -116,10 +116,10 @@
                 <!-- Добавление хэш-тегов и комментария к изображению -->
                 <fieldset class="img-upload__text text">
                   <div class="img-upload__field-wrapper">
-                    <input class="text__hashtags" name="hashtags" placeholder="#ХэшТег">
+                    <input type="text" class="text__hashtags" name="hashtags" placeholder="#ХэшТег">
                   </div>
                   <div class="img-upload__field-wrapper">
-                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..."></textarea>
+                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..." maxlength="140"></textarea>
                   </div>
                 </fieldset>
 
@@ -227,12 +227,15 @@
     </section>
   </template>
 
-    <!-- Сообщение с ошибкой загрузки изображений от других пользователей -->
-    <template id="data-error">
-      <section class="data-error">
-        <h2 class="data-error__title">Не удалось загрузить данные</h2>
-      </section>
-    </template>
+  <!-- Сообщение с ошибкой загрузки изображений от других пользователей -->
+  <template id="data-error">
+    <section class="data-error">
+      <h2 class="data-error__title">Не удалось загрузить данные</h2>
+    </section>
+  </template>
+
+  <script src="vendor/pristine/pristine.min.js"></script>
   <script type="module" src="js/main.js"></script>
+
 </body>
 </html>
