@@ -1,5 +1,7 @@
 import {isEscapeKey} from '../utils/utils.js';
 import {addValidator, validatePristine, resetPristine} from './validate.js';
+import {setPhotoScale, resetPhotoScale} from './scale.js';
+import {createSlider} from './filter.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const form = document.querySelector('.img-upload__form');
@@ -16,6 +18,7 @@ const openForm = () => {
 const closeForm = () => {
   form.reset();
   resetPristine();
+  resetPhotoScale();
   formModal.classList.add('hidden');
   document.body.classList.remove('modal-open');
   formCloseButton.removeEventListener('click', formCloseButtonClickHandler);
@@ -46,6 +49,8 @@ const initFormAction = () => {
   uploadInput.addEventListener('change', uploadInputChangeHandler);
   form.addEventListener('submit', formSubmitHandler);
   addValidator();
+  setPhotoScale();
+  createSlider();
 };
 
 export {initFormAction};
