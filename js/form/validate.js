@@ -1,12 +1,10 @@
-const HASHTAGS_REGEXP = /^#[a-za-яё0-9]{1,19}$/;
+const HASHTAGS_REGEXP = /^#[a-za-яё0-9]{1,19}$/i;
 const HASHTAGS_MAX_COUNT = 5;
 const CAPTION_MAX_LENGTH = 140;
-const errorText = {
-  INVALID_HASHTAG_UNIQUE: 'Один и тот же хэш-тег не может быть использован дважды',
-  INVALID_HASHTAG_SYMBOLS: 'Хеш-тег начинается с # и может состоять только из букв и цифр длиной не больше 20 символов',
-  INVALID_HASHTAG_COUNT: 'Нельзя указать больше пяти хэш-тегов',
-  INVALID_CAPTION: 'Длина комментария не может составлять больше 140 символов'
-};
+const INVALID_HASHTAG_UNIQUE = 'Один и тот же хэш-тег не может быть использован дважды';
+const INVALID_HASHTAG_SYMBOLS = 'Хеш-тег начинается с # и может состоять только из букв и цифр длиной не больше 20 символов';
+const INVALID_HASHTAG_COUNT = 'Нельзя указать больше пяти хэш-тегов';
+const INVALID_CAPTION = 'Длина комментария не может составлять больше 140 символов';
 
 const form = document.querySelector('.img-upload__form');
 const hashtagsInput = document.querySelector('.text__hashtags');
@@ -18,7 +16,7 @@ const pristine = new Pristine(form, {
   errorTextClass: 'img-upload__field-wrapper--error'
 });
 
-const createHashtags = (value) => value.trim().toLowerCase().split(' ').filter((hashtag) => Boolean(hashtag.length));
+const createHashtags = (value) => value.trim().toLowerCase().split(' ').filter((hashtag) => hashtag);
 
 const isUniqueHashtags = (value) => {
   const hashtags = createHashtags(value);
@@ -35,22 +33,30 @@ const addValidator = () => {
   pristine.addValidator(
     hashtagsInput,
     isUniqueHashtags,
-    errorText.INVALID_HASHTAG_UNIQUE
+    INVALID_HASHTAG_UNIQUE,
+    1,
+    true
   );
   pristine.addValidator(
     hashtagsInput,
     isRightHashtags,
-    errorText.INVALID_HASHTAG_SYMBOLS
+    INVALID_HASHTAG_SYMBOLS,
+    1,
+    true
   );
   pristine.addValidator(
     hashtagsInput,
     isMaxCountHashtags,
-    errorText.INVALID_HASHTAG_COUNT
+    INVALID_HASHTAG_COUNT,
+    1,
+    true
   );
   pristine.addValidator(
     captionInput,
     isValidCaption,
-    errorText.INVALID_CAPTION
+    INVALID_CAPTION,
+    1,
+    true
   );
 };
 

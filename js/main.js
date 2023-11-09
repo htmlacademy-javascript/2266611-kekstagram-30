@@ -1,5 +1,5 @@
 import {renderPosts} from './posts/thumbnails.js';
-import {setFormAction} from './form.js';
+import {initFormAction} from './form/form.js';
 
 renderPosts();
-setFormAction();
+initFormAction();
