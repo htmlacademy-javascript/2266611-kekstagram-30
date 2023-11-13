@@ -2,6 +2,7 @@ const SCALE_STEP = 25;
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 const DEFAULT_VALUE = 100;
+const PERCENT = 100;
 
 const buttonZoomOut = document.querySelector('.scale__control--smaller');
 const buttonZoomIn = document.querySelector('.scale__control--bigger');
@@ -11,7 +12,7 @@ const controlInput = document.querySelector('.scale__control--value');
 const getInputValue = () => parseInt(controlInput.value, 10);
 
 const updateScale = (value) => {
-  previewPhoto.style.transform = `scale(${value / 100})`;
+  previewPhoto.style.transform = `scale(${value / PERCENT})`;
   controlInput.value = `${value}%`;
 };
 

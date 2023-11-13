@@ -21,9 +21,8 @@ const updateCommentsCounter = () => {
   commentsShownCounter.textContent = visibleComments;
 };
 
-const setLoadingButtonStatus = () => {
-  commentsLoadingButton.classList.toggle('hidden', visibleComments >= comments.length);
-};
+const setLoadingButtonStatus = () => commentsLoadingButton.classList.toggle('hidden', visibleComments >= comments.length);
+
 
 const createComment = (comment) => {
   const newComment = commentsItem.cloneNode(true);
