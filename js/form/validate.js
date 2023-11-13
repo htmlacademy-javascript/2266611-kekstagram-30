@@ -29,7 +29,7 @@ const isMaxCountHashtags = (value) => createHashtags(value).length <= HASHTAGS_M
 
 const isValidCaption = (value) => value.length <= CAPTION_MAX_LENGTH;
 
-const addValidator = () => {
+const setPristine = () => {
   pristine.addValidator(
     hashtagsInput,
     isUniqueHashtags,
@@ -63,4 +63,4 @@ const addValidator = () => {
 const validatePristine = () => pristine.validate();
 const resetPristine = () => pristine.reset();
 
-export {addValidator, validatePristine, resetPristine};
+export {validatePristine, setPristine, resetPristine};

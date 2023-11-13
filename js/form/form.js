@@ -1,10 +1,14 @@
 import {isEscapeKey} from '../utils/utils.js';
-import {addValidator, validatePristine, resetPristine} from './validate.js';
+import {validatePristine, setPristine, resetPristine} from './validate.js';
+import {setPhotoScale, resetPhotoScale} from './scale.js';
+import {createSlider, updateSliderOptions} from './effect.js';
 
 const uploadInput = document.querySelector('.img-upload__input');
 const form = document.querySelector('.img-upload__form');
 const formModal = document.querySelector('.img-upload__overlay');
 const formCloseButton = document.querySelector('.img-upload__cancel');
+const effectsControl = document.querySelector('.effects__list');
+const checkedEffect = document.querySelector('.effects__radio[checked]');
 
 const openForm = () => {
   formModal.classList.remove('hidden');
@@ -16,6 +20,8 @@ const openForm = () => {
 const closeForm = () => {
   form.reset();
   resetPristine();
+  resetPhotoScale();
+  updateSliderOptions(checkedEffect.value);
   formModal.classList.add('hidden');
   document.body.classList.remove('modal-open');
   formCloseButton.removeEventListener('click', formCloseButtonClickHandler);
@@ -27,7 +33,10 @@ function formCloseButtonClickHandler() {
 }
 
 function documentKeydownHandler(evt) {
-  if (isEscapeKey(evt) && !evt.target.closest('.text__hashtags') && !evt.target.closest('.text__description')) {
+  const hashtagsInput = evt.target.closest('.text__hashtags');
+  const captionInput = evt.target.closest('.text__description');
+
+  if (isEscapeKey(evt) && !hashtagsInput && !captionInput) {
     evt.preventDefault();
     closeForm();
   }
@@ -42,10 +51,17 @@ function formSubmitHandler(evt) {
   validatePristine();
 }
 
+function effectsControlChangeHandler(evt) {
+  updateSliderOptions(evt.target.value);
+}
+
 const initFormAction = () => {
+  setPristine();
+  setPhotoScale();
+  createSlider(checkedEffect.value);
   uploadInput.addEventListener('change', uploadInputChangeHandler);
   form.addEventListener('submit', formSubmitHandler);
-  addValidator();
+  effectsControl.addEventListener('change', effectsControlChangeHandler);
 };
 
 export {initFormAction};
