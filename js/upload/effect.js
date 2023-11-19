@@ -50,6 +50,7 @@ const EFFECTS = {
     unit: '',
   },
   default: {
+    filter: 'none',
     range: {
       min: 0,
       max: 100,
