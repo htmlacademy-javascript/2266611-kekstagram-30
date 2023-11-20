@@ -59,7 +59,7 @@ function documentKeydownHandler(evt) {
   const hashtagsInput = evt.target.closest('.text__hashtags');
   const captionInput = evt.target.closest('.text__description');
 
-  if (isEscapeKey(evt) && !hashtagsInput && !captionInput) {
+  if (isEscapeKey(evt) && !hashtagsInput && !captionInput && !errorMessage) {
     evt.preventDefault();
     closeForm();
   }
