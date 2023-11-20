@@ -1,12 +1,15 @@
-const getData = (url, onSuccess, onFail) => {
-  fetch(url)
+const GET_DATA_URL = 'https://30.javascript.pages.academy/kekstagram/data';
+const SEND_DATA_URL = 'https://30.javascript.pages.academy/kekstagram/';
+
+const getData = (onSuccess, onFail) => {
+  fetch(GET_DATA_URL)
     .then((response) => response.json())
     .then((result) => onSuccess(result))
     .catch(() => onFail());
 };
 
-const sendData = (url, onSuccess, onFail, body) => {
-  fetch(url, {
+const sendData = (onSuccess, onFail, body) => {
+  fetch(SEND_DATA_URL, {
     method: 'POST',
     body,
   })

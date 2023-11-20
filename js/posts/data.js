@@ -1,15 +1,15 @@
 import {getData} from '../utils/api.js';
 import {renderPosts} from './thumbnails.js';
-import {renderMessage} from '../utils/messages.js';
+import {renderError} from '../utils/alerts.js';
 
-const GET_DATA_URL = 'https://30.javascript.pages.academy/kekstagram/data';
+const dataError = document.querySelector('#data-error').content.querySelector('.data-error');
 
-const getSuccess = (data) => {
+const uploadPosts = (data) => {
   renderPosts(data);
 };
 
-const showFail = () => renderMessage();
+const showError = () => renderError(dataError);
 
-const initPosts = () => getData(GET_DATA_URL, getSuccess, showFail);
+const initPosts = () => getData(uploadPosts, showError);
 
 export {initPosts};
