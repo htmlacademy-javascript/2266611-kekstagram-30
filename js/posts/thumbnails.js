@@ -1,7 +1,5 @@
-import {createPosts} from './data.js';
 import {renderModal} from './modal.js';
 
-const posts = createPosts();
 const container = document.querySelector('.pictures');
 const template = document.querySelector('#picture').content.querySelector('.picture');
 const fragment = document.createDocumentFragment();
@@ -20,7 +18,7 @@ const createPhoto = (post) => {
   fragment.append(newPhoto);
 };
 
-const renderPosts = () => {
+const renderPosts = (posts) => {
   posts.forEach((post) => createPhoto(post));
   container.append(fragment);
 };

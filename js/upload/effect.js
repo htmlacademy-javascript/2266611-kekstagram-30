@@ -50,6 +50,7 @@ const EFFECTS = {
     unit: '',
   },
   default: {
+    filter: 'none',
     range: {
       min: 0,
       max: 100,
@@ -77,7 +78,7 @@ const setSliderValue = (effect, value) => {
 };
 
 const updateSlider = (effect) => {
-  slider.noUiSlider.off();
+  slider.noUiSlider.off('update');
   slider.noUiSlider.on('update', () => {
     sliderInput.value = slider.noUiSlider.get();
     setSliderValue(effect, sliderInput.value);
