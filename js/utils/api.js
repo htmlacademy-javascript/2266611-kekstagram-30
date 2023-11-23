@@ -4,7 +4,7 @@ const GET_DATA_URL = `${BASE_URL}/data`;
 const getData = (onSuccess, onFail) => {
   fetch(GET_DATA_URL)
     .then((response) => response.json())
-    .then((result) => onSuccess(result))
+    .then((data) => onSuccess(data))
     .catch(() => onFail());
 };
 
