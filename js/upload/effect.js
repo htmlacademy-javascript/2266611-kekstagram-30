@@ -69,19 +69,12 @@ const setSliderEffect = (value) => EFFECTS[value] || EFFECTS.default;
 
 const setSliderStatus = (effect) => sliderContainer.classList.toggle('hidden', effect === EFFECTS.default);
 
-const setSliderValue = (effect, value) => {
-  if (effect === EFFECTS.default) {
-    previewPhoto.style.filter = null;
-    return;
-  }
-  previewPhoto.style.filter = `${effect.filter}(${value}${effect.unit})`;
-};
-
 const updateSlider = (effect) => {
   slider.noUiSlider.off('update');
   slider.noUiSlider.on('update', () => {
     sliderInput.value = slider.noUiSlider.get();
-    setSliderValue(effect, sliderInput.value);
+    previewPhoto.style.filter = (effect === EFFECTS.default)
+      ? null : `${effect.filter}(${sliderInput.value}${effect.unit})`;
   });
 };
 

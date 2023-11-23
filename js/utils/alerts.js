@@ -4,14 +4,25 @@ const TIME_REMOVE = 5000;
 
 let template;
 
-const renderMessage = (item, value) => {
+const createTemplate = (item) => {
   template = item.cloneNode(true);
   document.body.append(template);
+};
 
-  const messageButton = template.querySelector(`.${value}__button`);
-  messageButton.addEventListener('click', messageButtonClickHandler);
+const renderError = (item) => {
+  createTemplate(item);
+
+  setTimeout(() => {
+    template.remove();
+  }, TIME_REMOVE);
+};
+
+const renderMessage = (item, value) => {
+  createTemplate(item);
+
+  template.querySelector(`.${value}__button`).addEventListener('click', buttonClickHandler);
   document.addEventListener('keydown', documentKeydownHandler);
-  document.body.addEventListener('click', bodyClickHandler);
+  document.body.addEventListener('click', (evt) => bodyClickHandler(evt, value));
 };
 
 const closeMessage = () => {
@@ -20,7 +31,7 @@ const closeMessage = () => {
   document.body.removeEventListener('click', bodyClickHandler);
 };
 
-function messageButtonClickHandler() {
+function buttonClickHandler() {
   closeMessage();
 }
 
@@ -31,23 +42,11 @@ function documentKeydownHandler(evt) {
   }
 }
 
-function bodyClickHandler(evt) {
-  const success = evt.target.closest('.success__inner');
-  const error = evt.target.closest('.error__inner');
-
-  if (success || error) {
+function bodyClickHandler(evt, value) {
+  if (evt.target.closest(`.${value}__inner`)) {
     return;
   }
   closeMessage();
 }
-
-const renderError = (item) => {
-  template = item.cloneNode(true);
-  document.body.append(template);
-
-  setTimeout(() => {
-    template.remove();
-  }, TIME_REMOVE);
-};
 
 export {renderMessage, renderError};

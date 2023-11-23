@@ -23,7 +23,6 @@ const updateCommentsCounter = () => {
 
 const setLoadingButtonStatus = () => commentsLoadingButton.classList.toggle('hidden', visibleComments >= comments.length);
 
-
 const createComment = (comment) => {
   const newComment = commentsItem.cloneNode(true);
   const img = newComment.querySelector('.social__picture');

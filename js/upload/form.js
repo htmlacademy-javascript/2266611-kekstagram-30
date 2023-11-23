@@ -8,6 +8,9 @@ import {createSlider, updateSliderOptions} from './effect.js';
 const SUCCESS_STATUS = 'success';
 const ERROR_STATUS = 'error';
 
+const successMessage = document.querySelector('#success').content.querySelector('.success');
+const errorMessage = document.querySelector('#error').content.querySelector('.error');
+
 const uploadInput = document.querySelector('.img-upload__input');
 const form = document.querySelector('.img-upload__form');
 const formModal = document.querySelector('.img-upload__overlay');
@@ -15,8 +18,6 @@ const formCloseButton = document.querySelector('.img-upload__cancel');
 const formSubmitButton = document.querySelector('.img-upload__submit');
 const effectsControl = document.querySelector('.effects__list');
 const checkedEffect = document.querySelector('.effects__radio[checked]');
-const successMessage = document.querySelector('#success').content.querySelector('.success');
-const errorMessage = document.querySelector('#error').content.querySelector('.error');
 
 const openForm = () => {
   formModal.classList.remove('hidden');
