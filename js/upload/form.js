@@ -1,10 +1,11 @@
 import {isEscapeKey} from '../utils/utils.js';
-import {sendData} from '../utils/api.js';
+import {sendData} from '../server/api.js';
 import {renderMessage} from '../utils/alerts.js';
 import {validatePristine, setPristine, resetPristine} from './validate.js';
 import {setPhotoScale, resetPhotoScale} from './scale.js';
 import {createSlider, updateSliderOptions} from './effect.js';
 
+const FILE_TYPES = ['.jpg', '.jpeg', '.png', '.webp'];
 const SUCCESS_STATUS = 'success';
 const ERROR_STATUS = 'error';
 
@@ -16,6 +17,8 @@ const form = document.querySelector('.img-upload__form');
 const formModal = document.querySelector('.img-upload__overlay');
 const formCloseButton = document.querySelector('.img-upload__cancel');
 const formSubmitButton = document.querySelector('.img-upload__submit');
+const previewPhoto = document.querySelector('.img-upload__preview img');
+const previewEffects = document.querySelectorAll('.effects__preview');
 const effectsControl = document.querySelector('.effects__list');
 const checkedEffect = document.querySelector('.effects__radio[checked]');
 
@@ -66,8 +69,21 @@ function documentKeydownHandler(evt) {
   }
 }
 
-function uploadInputChangeHandler() {
-  openForm();
+function uploadInputChangeHandler(evt) {
+  const file = evt.target.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
+
+  if (matches) {
+    openForm();
+    const src = URL.createObjectURL(file);
+    previewPhoto.src = src;
+    previewEffects.forEach((previewEffect) => {
+      previewEffect.style.backgroundImage = `url(${src})`;
+    });
+  } else {
+    renderMessage(errorMessage, ERROR_STATUS);
+  }
 }
 
 function formSubmitHandler(evt) {

@@ -1,4 +1,4 @@
-import {getData} from '../utils/api.js';
+import {getData} from '../server/api.js';
 import {renderError} from '../utils/alerts.js';
 import {initPostsFilters} from './filter.js';
 
