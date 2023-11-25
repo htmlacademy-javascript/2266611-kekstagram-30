@@ -51,7 +51,8 @@ main {
   margin: 0 auto;
 }
 
-.modal-open {
+.modal-open,
+.alert-open {
   height: 100vh;
   overflow: hidden;
 }

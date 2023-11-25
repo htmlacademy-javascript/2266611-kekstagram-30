@@ -23,12 +23,14 @@ const renderMessage = (item, value) => {
   template.querySelector(`.${value}__button`).addEventListener('click', buttonClickHandler);
   document.addEventListener('keydown', documentKeydownHandler);
   document.body.addEventListener('click', (evt) => bodyClickHandler(evt, value));
+  document.body.classList.add('alert-open');
 };
 
 const closeMessage = () => {
   template.remove();
   document.removeEventListener('keydown', documentKeydownHandler);
   document.body.removeEventListener('click', bodyClickHandler);
+  document.body.classList.remove('alert-open');
 };
 
 function buttonClickHandler() {
