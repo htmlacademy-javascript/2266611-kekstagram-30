@@ -1208,7 +1208,8 @@ main {
  */
 
 .error,
-.success {
+.success,
+.file-error {
   position: fixed;
   display: flex;
   justify-content: center;
@@ -1224,7 +1225,8 @@ main {
 }
 
 .error__inner,
-.success__inner {
+.success__inner,
+.file-error__inner {
   position: relative;
   width: 600px;
   padding: 50px 20px;
@@ -1251,7 +1253,8 @@ main {
   padding-bottom: 75px;
 }
 
-.error__title {
+.error__title,
+.file-error__title {
   position: relative;
 
   margin: 0;
@@ -1267,7 +1270,8 @@ main {
   font-size: 32px;
 }
 
-.error__title::before {
+.error__title::before,
+.file-error__title::before {
   content: "";
   position: absolute;
 
@@ -1285,7 +1289,8 @@ main {
 }
 
 .error__button,
-.success__button {
+.success__button,
+.file-error__button {
   padding: 5px 10px;
 
   color: #ffffff;
@@ -1299,12 +1304,15 @@ main {
 .error__button:hover,
 .error__button:focus,
 .success__button:hover,
-.success__button:focus {
+.success__button:focus,
+.file-error__button:hover,
+.file-error__button:focus {
   opacity: 0.8;
 }
 
 .error__button:active,
-.success__button:active {
+.success__button:active,
+.file-error__button:active {
   opacity: 0.6;
 }
 

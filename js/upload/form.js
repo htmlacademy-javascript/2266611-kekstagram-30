@@ -8,10 +8,11 @@ import {createSlider, updateSliderOptions} from './effect.js';
 const FILE_TYPES = ['.jpg', '.jpeg', '.png', '.webp'];
 const SUCCESS_STATUS = 'success';
 const ERROR_STATUS = 'error';
+const ERROR_FILE_STATUS = 'file-error';
 
 const successMessage = document.querySelector('#success').content.querySelector('.success');
 const errorMessage = document.querySelector('#error').content.querySelector('.error');
-const errorFile = document.querySelector('#file-error').content.querySelector('.error');
+const errorFile = document.querySelector('#file-error').content.querySelector('.file-error');
 
 const uploadInput = document.querySelector('.img-upload__input');
 const form = document.querySelector('.img-upload__form');
@@ -84,7 +85,7 @@ const uploadInputChangeHandler = (evt) => {
       previewEffect.style.backgroundImage = `url(${src})`;
     });
   } else {
-    renderMessage(errorFile, ERROR_STATUS);
+    renderMessage(errorFile, ERROR_FILE_STATUS);
     form.reset();
   }
 };
