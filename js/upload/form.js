@@ -11,6 +11,7 @@ const ERROR_STATUS = 'error';
 
 const successMessage = document.querySelector('#success').content.querySelector('.success');
 const errorMessage = document.querySelector('#error').content.querySelector('.error');
+const errorFile = document.querySelector('#file-error').content.querySelector('.error');
 
 const uploadInput = document.querySelector('.img-upload__input');
 const form = document.querySelector('.img-upload__form');
@@ -83,7 +84,8 @@ const uploadInputChangeHandler = (evt) => {
       previewEffect.style.backgroundImage = `url(${src})`;
     });
   } else {
-    renderMessage(errorMessage, ERROR_STATUS);
+    renderMessage(errorFile, ERROR_STATUS);
+    form.reset();
   }
 };
 
