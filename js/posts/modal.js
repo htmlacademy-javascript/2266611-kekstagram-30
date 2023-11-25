@@ -38,6 +38,10 @@ const fillComments = () => {
   setLoadingButtonStatus();
 };
 
+const commentsLoadingButtonClickHandler = () => {
+  fillComments();
+};
+
 const fillPostInfo = (post) => {
   fullSizePhoto.src = post.url;
   fullSizePhoto.alt = post.description;
@@ -70,10 +74,6 @@ function documentKeydownHandler(evt) {
     evt.preventDefault();
     closeModal();
   }
-}
-
-function commentsLoadingButtonClickHandler() {
-  fillComments();
 }
 
 const resetLastPostValues = () => {

@@ -70,7 +70,7 @@ function documentKeydownHandler(evt) {
   }
 }
 
-function uploadInputChangeHandler(evt) {
+const uploadInputChangeHandler = (evt) => {
   const file = evt.target.files[0];
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
@@ -85,19 +85,19 @@ function uploadInputChangeHandler(evt) {
   } else {
     renderMessage(errorMessage, ERROR_STATUS);
   }
-}
+};
 
-function formSubmitHandler(evt) {
+const formSubmitHandler = (evt) => {
   evt.preventDefault();
   if (validatePristine()) {
     setSubmitButtonStatus(true);
     sendData(showSuccess, showError, new FormData(evt.target));
   }
-}
+};
 
-function effectsControlChangeHandler(evt) {
+const effectsControlChangeHandler = (evt) => {
   updateSliderOptions(evt.target.value);
-}
+};
 
 const initFormAction = () => {
   setPristine();
