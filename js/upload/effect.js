@@ -72,9 +72,10 @@ const setSliderStatus = (effect) => sliderContainer.classList.toggle('hidden', e
 const updateSlider = (effect) => {
   slider.noUiSlider.off('update');
   slider.noUiSlider.on('update', () => {
-    sliderInput.value = slider.noUiSlider.get();
+    const value = slider.noUiSlider.get();
+    sliderInput.value = +value;
     previewPhoto.style.filter = (effect === EFFECTS.default)
-      ? null : `${effect.filter}(${sliderInput.value}${effect.unit})`;
+      ? null : `${effect.filter}(${value}${effect.unit})`;
   });
 };
 

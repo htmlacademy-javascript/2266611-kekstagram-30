@@ -1,5 +1,5 @@
-const BASE_URL = 'https://30.javascript.pages.academy/kekstagram';
-const GET_DATA_URL = `${BASE_URL}/data`;
+const BASE_URL = 'https://30.javascript.pages.academy/kekstagram/';
+const GET_DATA_URL = `${BASE_URL}data`;
 
 const getData = (onSuccess, onFail) => {
   fetch(GET_DATA_URL)

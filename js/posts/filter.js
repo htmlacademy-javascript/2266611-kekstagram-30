@@ -34,7 +34,7 @@ const filterPhotos = (id, data) => {
 const debounceRender = debounce((id, data) => renderPosts(filterPhotos(id, data)));
 
 function filtersClickHandler(evt, data) {
-  if (!evt.target.closest('.img-filters__button--active')) {
+  if (evt.target.closest('.img-filters__button') && !evt.target.closest('.img-filters__button--active')) {
     document.querySelector('.img-filters__button--active').classList.remove('img-filters__button--active');
     evt.target.classList.add('img-filters__button--active');
     debounceRender(evt.target.id, data);

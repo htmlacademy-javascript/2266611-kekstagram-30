@@ -62,8 +62,9 @@ function formCloseButtonClickHandler() {
 function documentKeydownHandler(evt) {
   const hashtagsInput = evt.target.closest('.text__hashtags');
   const captionInput = evt.target.closest('.text__description');
+  const error = document.querySelector('.error');
 
-  if (isEscapeKey(evt) && !hashtagsInput && !captionInput && !errorMessage) {
+  if (isEscapeKey(evt) && !hashtagsInput && !captionInput && !error) {
     evt.preventDefault();
     closeForm();
   }
