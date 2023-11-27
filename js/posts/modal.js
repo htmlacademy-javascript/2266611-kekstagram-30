@@ -33,7 +33,8 @@ const createComment = (comment) => {
 };
 
 const fillComments = () => {
-  comments.slice(visibleComments, visibleComments + COMMENTS_STEP).forEach((comment) => commentsList.append(createComment(comment)));
+  const currentComments = comments.slice(visibleComments, visibleComments + COMMENTS_STEP);
+  currentComments.forEach((comment) => commentsList.append(createComment(comment)));
   updateCommentsCounter();
   setLoadingButtonStatus();
 };

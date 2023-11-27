@@ -5,6 +5,7 @@ import {validatePristine, setPristine, resetPristine} from './validate.js';
 import {setPhotoScale, resetPhotoScale} from './scale.js';
 import {createSlider, updateSliderOptions} from './effect.js';
 
+const SEND_DATA_URL = 'https://30.javascript.pages.academy/kekstagram/';
 const FILE_TYPES = ['.jpg', '.jpeg', '.png', '.webp'];
 const SUCCESS_STATUS = 'success';
 const ERROR_STATUS = 'error';
@@ -94,7 +95,7 @@ const formSubmitHandler = (evt) => {
   evt.preventDefault();
   if (validatePristine()) {
     setSubmitButtonStatus(true);
-    sendData(showSuccess, showError, new FormData(evt.target));
+    sendData(SEND_DATA_URL, showSuccess, showError, new FormData(evt.target));
   }
 };
 

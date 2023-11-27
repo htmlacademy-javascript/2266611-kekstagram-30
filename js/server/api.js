@@ -1,16 +1,15 @@
-const BASE_URL = 'https://30.javascript.pages.academy/kekstagram/';
-const GET_DATA_URL = `${BASE_URL}data`;
+const SEND_METHOD = 'POST';
 
-const getData = (onSuccess, onFail) => {
-  fetch(GET_DATA_URL)
+const getData = (url, onSuccess, onFail) => {
+  fetch(url)
     .then((response) => response.json())
     .then((data) => onSuccess(data))
     .catch(() => onFail());
 };
 
-const sendData = (onSuccess, onFail, body) => {
-  fetch(BASE_URL, {
-    method: 'POST',
+const sendData = (url, onSuccess, onFail, body) => {
+  fetch(url, {
+    method: SEND_METHOD,
     body,
   })
     .then((response) => {

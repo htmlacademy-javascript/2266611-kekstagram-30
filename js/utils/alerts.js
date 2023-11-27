@@ -45,10 +45,9 @@ function documentKeydownHandler(evt) {
 }
 
 function bodyClickHandler(evt, value) {
-  if (evt.target.closest(`.${value}__inner`)) {
-    return;
+  if (!evt.target.closest(`.${value}__inner`)) {
+    closeMessage();
   }
-  closeMessage();
 }
 
 export {renderMessage, renderError};
