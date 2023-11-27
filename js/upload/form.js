@@ -1,21 +1,27 @@
 import {isEscapeKey} from '../utils/utils.js';
-import {sendData} from '../utils/api.js';
+import {sendData} from '../server/api.js';
 import {renderMessage} from '../utils/alerts.js';
 import {validatePristine, setPristine, resetPristine} from './validate.js';
 import {setPhotoScale, resetPhotoScale} from './scale.js';
 import {createSlider, updateSliderOptions} from './effect.js';
 
+const SEND_DATA_URL = 'https://30.javascript.pages.academy/kekstagram/';
+const FILE_TYPES = ['.jpg', '.jpeg', '.png', '.webp'];
 const SUCCESS_STATUS = 'success';
 const ERROR_STATUS = 'error';
+const ERROR_FILE_STATUS = 'file-error';
 
 const successMessage = document.querySelector('#success').content.querySelector('.success');
 const errorMessage = document.querySelector('#error').content.querySelector('.error');
+const errorFile = document.querySelector('#file-error').content.querySelector('.file-error');
 
 const uploadInput = document.querySelector('.img-upload__input');
 const form = document.querySelector('.img-upload__form');
 const formModal = document.querySelector('.img-upload__overlay');
 const formCloseButton = document.querySelector('.img-upload__cancel');
 const formSubmitButton = document.querySelector('.img-upload__submit');
+const previewPhoto = document.querySelector('.img-upload__preview img');
+const previewEffects = document.querySelectorAll('.effects__preview');
 const effectsControl = document.querySelector('.effects__list');
 const checkedEffect = document.querySelector('.effects__radio[checked]');
 
@@ -59,28 +65,43 @@ function formCloseButtonClickHandler() {
 function documentKeydownHandler(evt) {
   const hashtagsInput = evt.target.closest('.text__hashtags');
   const captionInput = evt.target.closest('.text__description');
+  const error = document.querySelector('.error');
 
-  if (isEscapeKey(evt) && !hashtagsInput && !captionInput && !errorMessage) {
+  if (isEscapeKey(evt) && !hashtagsInput && !captionInput && !error) {
     evt.preventDefault();
     closeForm();
   }
 }
 
-function uploadInputChangeHandler() {
-  openForm();
-}
+const uploadInputChangeHandler = (evt) => {
+  const file = evt.target.files[0];
+  const fileName = file.name.toLowerCase();
+  const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
 
-function formSubmitHandler(evt) {
+  if (matches) {
+    openForm();
+    const src = URL.createObjectURL(file);
+    previewPhoto.src = src;
+    previewEffects.forEach((previewEffect) => {
+      previewEffect.style.backgroundImage = `url(${src})`;
+    });
+  } else {
+    renderMessage(errorFile, ERROR_FILE_STATUS);
+    form.reset();
+  }
+};
+
+const formSubmitHandler = (evt) => {
   evt.preventDefault();
   if (validatePristine()) {
     setSubmitButtonStatus(true);
-    sendData(showSuccess, showError, new FormData(evt.target));
+    sendData(SEND_DATA_URL, showSuccess, showError, new FormData(evt.target));
   }
-}
+};
 
-function effectsControlChangeHandler(evt) {
+const effectsControlChangeHandler = (evt) => {
   updateSliderOptions(evt.target.value);
-}
+};
 
 const initFormAction = () => {
   setPristine();

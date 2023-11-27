@@ -35,7 +35,7 @@
 
             <!-- Изначальное состояние поля для загрузки изображения -->
             <fieldset class="img-upload__start">
-              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" accept=".jpg, .jpeg, .png" required>
+              <input type="file" id="upload-file" class="img-upload__input  visually-hidden" name="filename" accept=".jpg, .jpeg, .png, .webp" required>
               <label for="upload-file" class="img-upload__label  img-upload__control">Загрузить</label>
             </fieldset>
 
@@ -120,7 +120,7 @@
                     <input type="text" class="text__hashtags" name="hashtags" placeholder="#ХэшТег">
                   </div>
                   <div class="img-upload__field-wrapper">
-                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..." maxlength="140"></textarea>
+                    <textarea class="text__description" name="description" placeholder="Ваш комментарий..."></textarea>
                   </div>
                 </fieldset>
 
@@ -224,6 +224,16 @@
       <div class="success__inner">
         <h2 class="success__title">Изображение успешно загружено</h2>
         <button type="button" class="success__button">Круто!</button>
+      </div>
+    </section>
+  </template>
+
+  <!-- Сообщение с ошибкой загрузки файла -->
+  <template id="file-error">
+    <section class="file-error">
+      <div class="file-error__inner">
+        <h2 class="file-error__title">Выберите другой тип файла</h2>
+        <button type="button" class="file-error__button">Хорошо</button>
       </div>
     </section>
   </template>

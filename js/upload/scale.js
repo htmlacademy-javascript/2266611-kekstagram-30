@@ -16,15 +16,15 @@ const updateScale = (value) => {
   controlInput.value = `${value}%`;
 };
 
-function buttonZoomOutClickHandler() {
+const buttonZoomOutClickHandler = () => {
   const stepBack = Math.max(getInputValue() - SCALE_STEP, MIN_SCALE);
   updateScale(stepBack);
-}
+};
 
-function buttonZoomInClickHandler() {
+const buttonZoomInClickHandler = () => {
   const stepForward = Math.min(getInputValue() + SCALE_STEP, MAX_SCALE);
   updateScale(stepForward);
-}
+};
 
 const setPhotoScale = () => {
   buttonZoomOut.addEventListener('click', buttonZoomOutClickHandler);

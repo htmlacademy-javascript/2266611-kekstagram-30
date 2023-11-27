@@ -1,3 +1,5 @@
+const RENDER_DELAY = 500;
+
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 const shuffleArray = (array) => {
@@ -8,7 +10,7 @@ const shuffleArray = (array) => {
   return array;
 };
 
-const debounce = (callback, timeoutDelay = 500) => {
+const debounce = (callback, timeoutDelay = RENDER_DELAY) => {
   let timeoutId;
   return (...rest) => {
     clearTimeout(timeoutId);
