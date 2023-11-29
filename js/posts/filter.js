@@ -8,7 +8,7 @@ const SHUFFLE_COUNT = 10;
 
 const filtersContainer = document.querySelector('.img-filters');
 const filters = document.querySelector('.img-filters__form');
-const currentFilterId = document.querySelector('.img-filters__button--active').id;
+const startFilterId = document.querySelector('.img-filters__button--active').id;
 
 const sortPhotos = (data) => data.slice().sort((a, b) => b.comments.length - a.comments.length);
 
@@ -42,7 +42,7 @@ const filtersClickHandler = (evt, data) => {
 };
 
 const initPostsFilters = (data) => {
-  renderPosts(filterPhotos(currentFilterId, data));
+  renderPosts(filterPhotos(startFilterId, data));
   filtersContainer.classList.remove('img-filters--inactive');
   filters.addEventListener('click', (evt) => filtersClickHandler(evt, data));
 };
