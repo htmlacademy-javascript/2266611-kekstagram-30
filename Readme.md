@@ -1,51 +1,51 @@
-# Личный проект «Кекстаграм»
+# Kekstagram
 
-* Студент: [Ольга Межецкая](https://up.htmlacademy.ru/javascript/30/user/2266611).
-* Наставник: [Павел Позняк](https://htmlacademy.ru/profile/id907403).
+Simple Instagram-like app, where users have the option to upload their photos after pre-editing and applying filters and can view photos of other users, mark them as liked and comment on them
 
----
+<p align="center"><img width="869" alt="Browser Mockup." src="/kekstagram-preview.png"></p>
 
-_Не удаляйте и не изменяйте самовольно файлы и папки:_
-_`.editorconfig`, `.eslintrc`, `.gitattributes`, `.gitignore`, `package-lock.json`, `package.json`., `.github`_
+### Directory structure
 
----
+    ├── js
+    │   ├── posts                      # viewing photos on the website
+    │   │   ├── data.js                  # uploading posts from the server
+    │   │   ├── filter.js                # posts filtering
+    │   │   ├── modal.js                 # full-size photo viewing mode
+    │   │   └── thumbnails.js            # displaying uploaded posts as photo thumbnails
+    │   ├── server
+    │   │   └── api.js
+    │   ├── upload                     # uploading a new photo and filling in information about it
+    │   │   ├── effect.js                # applying an effect to a photo
+    │   │   ├── form.js                  # sending form data to the server
+    │   │   ├── scale.js                 # photo scaling
+    │   │   └── validate.js              # validation of post's hashtags and comment
+    │   ├── utils
+    │   │   ├── alerts.js
+    │   │   └── utils.js
+    │   └── main.js
+    └── index.html
 
-[Как работать с Git на проекте](Contributing.md) | [Как работать над проектом](Workflow.md)
+### Modules
 
-### Памятка
+```javascript
+// js/main.js
 
-#### 1. Зарегистрируйтесь на Гитхабе
+import {initPosts} from './posts/data.js';
+import {initFormAction} from './upload/form.js';
 
-Если у вас ещё нет аккаунта на [github.com](https://github.com/join), скорее зарегистрируйтесь.
-
-#### 2. Создайте форк
-
-Откройте репозиторий и нажмите кнопку «Fork» в правом верхнем углу. Репозиторий из Академии будет скопирован в ваш аккаунт.
-
-<img width="769" alt="" src="https://user-images.githubusercontent.com/10909/35275222-1d624452-0050-11e8-8aca-06d2832724ce.png">
-
-Получится вот так:
-
-<img width="769" alt="" src="https://user-images.githubusercontent.com/10909/35275223-1d7cf9fa-0050-11e8-829b-98ac3c9a4f8b.png">
-
-#### 3. Клонируйте репозиторий на свой компьютер
-
-Будьте внимательны: нужно клонировать свой репозиторий (форк), а не репозиторий Академии. Также обратите внимание, что клонировать репозиторий нужно через SSH, а не через HTTPS. Нажмите зелёную кнопку в правой части экрана, чтобы скопировать SSH-адрес вашего репозитория:
-
-<img width="769" alt="" src="https://user-images.githubusercontent.com/10909/35275224-1d97a7dc-0050-11e8-89f9-41c9a7b2ae9c.png">
-
-Клонировать репозиторий можно так:
-
+initPosts();
+initFormAction();
 ```
-git clone SSH-адрес_вашего_форка
-```
+<p align="center"><img width="600" alt="Modules scheme." src="/modules.png"></p>
 
-Команда клонирует репозиторий на ваш компьютер и подготовит всё необходимое для старта работы.
+### Technologies
 
-#### 4. Начинайте обучение!
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 
----
-
-<a href="https://htmlacademy.ru/intensive/javascript"><img align="left" width="50" height="50" alt="HTML Academy" src="https://up.htmlacademy.ru/static/img/intensive/javascript/logo-for-github-2.png"></a>
-
-Репозиторий создан для обучения на интенсивном онлайн‑курсе «[JavaScript. Профессиональная разработка веб-интерфейсов](https://htmlacademy.ru/intensive/javascript)» от [HTML Academy](https://htmlacademy.ru).
+- DOM Manipulation: create, change and remove elements from a web document
+- Event handling: event phases and delegation, keyboard accessibility
+- Integrating external APIs, third-party libraries
+- Interacting with a server: HTTP requests and responses
+- Array Manipulation: sorting and filtering
