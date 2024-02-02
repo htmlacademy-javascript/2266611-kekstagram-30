@@ -36,7 +36,7 @@ import {initFormAction} from './upload/form.js';
 initPosts();
 initFormAction();
 ```
-<p align="center"><img width="600" alt="Modules scheme." src="/modules.png"></p>
+<p align="center"><img width="869" alt="Modules scheme." src="/modules.png"></p>
 
 ### Technologies
 
